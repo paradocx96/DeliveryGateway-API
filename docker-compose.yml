@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  # Mongo Database
+  mongo_db:
+    image: mongo
+    container_name: mongoDB
+    restart: always
+    ports:
+      - 27017:27017
+
+  # Spring-Boot API
+  api_service:
+    image: delivery-gateway-api
+    container_name: delivery-gateway-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - mongo_db
