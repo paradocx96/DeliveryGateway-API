@@ -2,7 +2,7 @@ version: "3.9"
 services:
   # Mongo Database
   mongo-service:
-    image: mongo
+    image: mongo:5.0
     container_name: delivery-gateway-MongoDB
     restart: always
     environment:
