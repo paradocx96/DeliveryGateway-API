@@ -10,7 +10,7 @@ services:
 
   # Spring-Boot API
   api_service:
-    image: delivery-gateway-api
+    image: paradocx96/delivery-gateway-api
     container_name: delivery-gateway-api
     build:
       context: .
