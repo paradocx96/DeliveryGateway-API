@@ -1,16 +1,19 @@
 version: "3.9"
 services:
   # Mongo Database
-  mongo_db:
+  mongo-service:
     image: mongo
-    container_name: mongoDB
+    container_name: delivery-gateway-MongoDB
     restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
     ports:
       - 27017:27017
 
   # Spring-Boot API
   api_service:
-    image: paradocx96/delivery-gateway-api
+    image: paradocx96/delivery-gateway-api:v1
     container_name: delivery-gateway-api
     build:
       context: .
@@ -19,4 +22,4 @@ services:
       - 8080:8080
     restart: always
     depends_on:
-      - mongo_db
+      - mongo-service
