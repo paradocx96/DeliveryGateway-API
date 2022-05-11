@@ -38,17 +38,9 @@ jobs:
       - name: Update Deploy File in K8s
         run: sed -i.bak 's/{{tag}}/${{ github.sha }}/g' k8s/deploy.yaml  && rm k8s/*.bak
 
-      - uses: actions/checkout@main
       - name: Connect to Azure Container Registry (ACR)
       - uses: azure/docker-login@v1
         with:
           login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-
-      - name: Container build and push to a Azure Container Registry (ACR)
-      - run: |
-          docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
-          docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
-        working-directory: ./Dockerfile
-
