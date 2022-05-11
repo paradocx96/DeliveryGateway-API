@@ -1,10 +1,8 @@
-name: CI
+name: Docker Build & Push to DockerHub
 
 on:
   push:
     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
 
 jobs:
   build:
@@ -28,5 +26,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/delivery-gateway-api:${{ github.sha }}
-      
-      
+
+      - name: Update Deploy File in K8s
+        run: sed -i.bak 's/{{tag}}/${{ github.sha }}/g' k8s/deploy.yaml  && rm k8s/*.bak
+
