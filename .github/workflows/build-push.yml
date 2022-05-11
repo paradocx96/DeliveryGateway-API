@@ -9,7 +9,7 @@ env:
   CLUSTER_NAME: CTSE-Cluster
   CLUSTER_RESOURCE_GROUP: CTSE
   NAMESPACE: default
-  SECRET: {secret-name}
+#   SECRET: {secret-name}
   APP_NAME: delivery-gateway-api
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
       - name: Update Deploy File in K8s
         run: sed -i.bak 's/{{tag}}/${{ github.sha }}/g' k8s/deploy.yaml  && rm k8s/*.bak
 
-      # - uses: actions/checkout@main
+      - uses: actions/checkout@main
       - name: Connect to Azure Container Registry (ACR)
       - uses: azure/docker-login@v1
         with:
