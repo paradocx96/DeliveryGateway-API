@@ -8,8 +8,8 @@ env:
   REGISTRY_NAME: it19180526
   CLUSTER_NAME: CTSE-Cluster
   CLUSTER_RESOURCE_GROUP: CTSE
-  NAMESPACE: default
-#   SECRET: {secret-name}
+  NAMESPACE: delivery-gateway
+  SECRET: delivery-gateway
   APP_NAME: delivery-gateway-api
 
 jobs:
@@ -50,4 +50,3 @@ jobs:
       - run: |
           docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
           docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
-        working-directory: ./Dockerfile
