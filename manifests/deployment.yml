@@ -1,19 +1,28 @@
-apiVersion : apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "ctsecluster-ffdc"
+  name: delivery-gateway-api-deployment
+  labels:
+    app: delivery-gateway-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: "ctsecluster-ffdc"
+      app: delivery-gateway-api
   template:
     metadata:
       labels:
-        app: "ctsecluster-ffdc"
+        app: delivery-gateway-api
     spec:
       containers:
-        - name: "ctsecluster-ffdc"
-          image: "it19180526.azurecr.io/ctsecluster"
+        - name: delivery-gateway-api
+          image: paradocx96/delivery-gateway-api:v2
           ports:
-          - containerPort: 8080
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: 0.2
+              memory: 350Mi
+            limits:
+              cpu: 0.5
+              memory: 500Mi

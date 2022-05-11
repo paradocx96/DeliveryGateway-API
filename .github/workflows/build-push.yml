@@ -77,8 +77,8 @@ jobs:
         with:
           namespace: ${{ env.NAMESPACE }}
           manifests: |
-            k8s/deploy.yml
-            k8s/service.yml
+            manifests/deployment.yml
+            manifests/service.yml
           images: |
             ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ github.sha }}
           imagepullsecrets: |
