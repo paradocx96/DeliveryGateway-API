@@ -19,6 +19,13 @@ spec:
           image: paradocx96/delivery-gateway-api:{{tag}}
           ports:
             - containerPort: 8080
+          resources:
+            requests:
+              cpu: 0.2
+              memory: 350Mi
+            limits:
+              cpu: 0.5
+              memory: 500Mi
           env:
             - name: USER_NAME
               valueFrom:
@@ -35,3 +42,4 @@ spec:
                 configMapKeyRef:
                   name: mongo-config
                   key: mongo-url
+
