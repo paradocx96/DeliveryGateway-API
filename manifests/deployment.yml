@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "ctsecluster-ffdc"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "ctsecluster-ffdc"
+  template:
+    metadata:
+      labels:
+        app: "ctsecluster-ffdc"
+    spec:
+      containers:
+        - name: "ctsecluster-ffdc"
+          image: "it19180526.azurecr.io/ctsecluster"
+          ports:
+          - containerPort: 8080
