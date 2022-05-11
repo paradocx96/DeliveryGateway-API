@@ -19,19 +19,3 @@ spec:
           image: paradocx96/delivery-gateway-api:{{tag}}
           ports:
             - containerPort: 8080
-          env:
-            - name: USER_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-secret
-                  key: mongo-user
-            - name: USER_PWD
-              valueFrom:
-                secretKeyRef:
-                  name: mongo-secret
-                  key: mongo-password
-            - name: DB_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: mongo-config
-                  key: mongo-url

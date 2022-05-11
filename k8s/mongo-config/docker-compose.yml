@@ -16,8 +16,8 @@ services:
     image: paradocx96/delivery-gateway-api:v1
     container_name: delivery-gateway-api
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ../..
+      dockerfile: ../../Dockerfile
     ports:
       - 8080:8080
     restart: always
