@@ -36,7 +36,7 @@ jobs:
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/delivery-gateway-api:${{ github.sha }}
 
       - name: Update Deploy File in K8s
-        run: sed -i.bak 's/{{tag}}/${{ github.sha }}/g' manifests/deployment.yml  && rm k8s/*.bak
+        run: sed -i.bak 's/{{tag}}/${{ github.sha }}/g' manifests/deployment.yml  && rm manifests/*.bak
 
       - name: Login to Azure Container Registry
         uses: azure/docker-login@v1
