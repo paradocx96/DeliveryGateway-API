@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PostManRepo extends MongoRepository<PostMan, Long> {
+public interface PostManRepo extends MongoRepository<PostMan, String> {
 
     // Declare a function for get last order from database
     List<PostMan> findTopByOrderByIdDesc();

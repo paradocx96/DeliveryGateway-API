@@ -4,6 +4,7 @@ import com.delivery.model.PostMan;
 import com.delivery.service.PostManService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +14,6 @@ import java.util.List;
 @RequestMapping("/api/postman")
 public class PostManController {
 
-    // Declare a service class variable
     private final PostManService service;
 
     @Autowired
@@ -21,21 +21,39 @@ public class PostManController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("/get")
+    @ResponseStatus(HttpStatus.OK)
     public List<PostMan> getAll() {
         return service.getAll();
     }
 
-    // Function for add new order to database
+    @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PostMan getPostmanById(@PathVariable String id) {
+        return service.getByID(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public String deletePostmanById(@PathVariable String id) {
+        return service.deleteById(id);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String updatePostman(@RequestBody PostMan postMan) {
+        return service.updateModel(postMan);
+    }
+
     @PostMapping("/add")
-    public PostMan createUpdatePostMan(@RequestBody PostMan pm) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public PostMan createPostMan(@RequestBody PostMan pm) {
         return service.savePostMan(pm);
     }
 
-    // Function for get last added order
     @GetMapping("/last")
+    @ResponseStatus(HttpStatus.OK)
     public List<PostMan> getLastOrder() {
         return service.getLastOrder();
     }
-
 }

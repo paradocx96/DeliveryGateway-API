@@ -40,7 +40,7 @@ public class AddressController {
     }
 
     @PutMapping("/update")
-    //@PreAuthorize("hasRole('SELLER')")
+    @ResponseStatus(HttpStatus.CREATED)
     public String updateAddress(@RequestBody Address address) {
         return service.updateAddress(address);
     }
