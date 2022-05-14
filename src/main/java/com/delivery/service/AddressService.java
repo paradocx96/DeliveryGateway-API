@@ -7,6 +7,7 @@ import com.delivery.model.Address;
 import com.delivery.repo.AddressRepo;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class AddressService {
@@ -24,8 +25,48 @@ public class AddressService {
 		return addressRepo.save(address);
 	}
 
+	// Implementation of get all address
 	public List<Address> getAll() {
 		return  addressRepo.findAll();
+	}
+
+	// Implementation of get address by id
+	public Address getById(String id) {
+		return addressRepo.findById(id).get();
+	}
+
+	// Implementation of delete address by id
+	public String deleteById(String id) {
+		Address address = null;
+
+		try {
+			address = addressRepo.findById(id).get();
+			if (address != null) {
+				addressRepo.deleteById(id);
+				return "Item delete success";
+			} else {
+				return "Item Does not exist";
+			}
+		} catch (NoSuchElementException e) {
+			return "Item delete ERROR";
+		}
+	}
+
+	// Implementation of update address
+	public String updateAddress(Address address) {
+		Address local = null;
+
+		try {
+			local = addressRepo.findById(address.getId()).get();
+			if (local != null) {
+				addressRepo.save(address);
+				return "Item update success";
+			} else {
+				return "Item Does not exist";
+			}
+		} catch (NoSuchElementException e) {
+			return "Item update ERROR";
+		}
 	}
 
 	// Implementation of get calculated delivery value
@@ -91,7 +132,5 @@ public class AddressService {
 		} else {
 			return price;
 		}
-		
 	}
-
 }

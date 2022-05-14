@@ -4,17 +4,16 @@ import com.delivery.model.Address;
 import com.delivery.service.AddressService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
 @RestController
 @RequestMapping("/api/address")
 public class AddressController {
 
-    // Declare a service class variable
     private final AddressService service;
 
     @Autowired
@@ -22,20 +21,39 @@ public class AddressController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("/get")
+    @ResponseStatus(HttpStatus.OK)
     public List<Address> getAllAddress() {
         return service.getAll();
     }
 
-    // Function for get calculate delivery cost from service class
+    @GetMapping("/get/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Address getById(@PathVariable String id) {
+        return service.getById(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteById(@PathVariable String id) {
+        return service.deleteById(id);
+    }
+
+    @PutMapping("/update")
+    //@PreAuthorize("hasRole('SELLER')")
+    public String updateAddress(@RequestBody Address address) {
+        return service.updateAddress(address);
+    }
+
     @PostMapping("/calculate")
+    @ResponseStatus(HttpStatus.OK)
     public double calculateDeliveryCost(@RequestBody Address address) {
         return service.calDeliveryCost(address);
     }
 
-    // Function for add new address to database
     @PostMapping("/add")
-    public Address createUpdateAddress(@RequestBody Address address) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Address createAddress(@RequestBody Address address) {
         return service.saveAddress(address);
     }
 
