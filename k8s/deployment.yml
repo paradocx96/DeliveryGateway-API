@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: delivery-gateway-api-deployment
+  namespace: delivery-management
   labels:
     app: delivery-gateway-api
 spec:
@@ -42,4 +43,3 @@ spec:
                 configMapKeyRef:
                   name: mongo-config
                   key: mongo-url
-
