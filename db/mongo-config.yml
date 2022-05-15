@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: mongo-config
-  namespace: delivery-management
+  namespace: easy-shopping
 data:
   mongo-url: mongo-service
 ---
@@ -10,7 +10,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: mongo-secret
-  namespace: delivery-management
+  namespace: easy-shopping
 type: Opaque
 data:
   mongo-user: cm9vdA==

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: delivery-gateway-api-deployment
-  namespace: delivery-management
+  namespace: easy-shopping
   labels:
     app: delivery-gateway-api
 spec:
