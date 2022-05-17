@@ -11,6 +11,8 @@ public class PostMan {
     private String id;
     private String orderid;
     private String price;
+    private String deliveryprice;
+    private String totalprice;
     private String status;
 
     // Implement default constructor
@@ -18,10 +20,12 @@ public class PostMan {
     }
 
     // Implement overload constructor
-    public PostMan(String id, String orderid, String price, String status) {
+    public PostMan(String id, String orderid, String price, String deliveryprice, String totalprice, String status) {
         this.id = id;
         this.orderid = orderid;
         this.price = price;
+        this.deliveryprice = deliveryprice;
+        this.totalprice = totalprice;
         this.status = status;
     }
 
@@ -29,9 +33,11 @@ public class PostMan {
     @Override
     public String toString() {
         return "PostMan{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", orderid='" + orderid + '\'' +
                 ", price='" + price + '\'' +
+                ", deliveryprice='" + deliveryprice + '\'' +
+                ", totalprice='" + totalprice + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }
@@ -59,6 +65,22 @@ public class PostMan {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getDeliveryprice() {
+        return deliveryprice;
+    }
+
+    public void setDeliveryprice(String deliveryprice) {
+        this.deliveryprice = deliveryprice;
+    }
+
+    public String getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(String totalprice) {
+        this.totalprice = totalprice;
     }
 
     public String getStatus() {

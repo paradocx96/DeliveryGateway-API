@@ -51,6 +51,7 @@ public class PostManService {
             local = postManRepo.findById(postMan.getId()).get();
             if (local != null) {
                 postManRepo.save(postMan);
+                System.out.println(postMan.toString());
                 return "Item update success";
             } else {
                 return "Item Does not exist";
@@ -62,6 +63,7 @@ public class PostManService {
 
     // Implementation of add new Order to database
     public PostMan savePostMan(PostMan pm) {
+        System.out.println(pm.toString());
         return postManRepo.save(pm);
     }
 
